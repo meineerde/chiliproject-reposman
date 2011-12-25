@@ -1,0 +1,72 @@
+h1. Reposman for ChiliProject
+
+<pre>
+Synopsis
+--------
+
+  reposman: Manage and create Repositories for ChiliProject
+
+Usage
+-----
+
+  reposman [OPTIONS] -b [DIR] -h [URL]
+
+  Examples:
+    reposman --repo-base=/var/lib/git --chiliproject=chili.example.net --svm=git
+    reposman -b /var/lib/svn -h chili.example.net -u http://svn.example.net --scm=subversion
+
+Arguments (mandatory)
+---------------------
+
+  -b, --repo-base=DIR       Use DIR as base directories for repositories
+  -h, --chiliproject=HOST   Assume ChiliProject is hosted at URL. Repositories
+                            will be registered there. Examples:
+                              -c http://chili.example.net
+                              -c https://example.net/chiliproject
+
+  -k, --key=KEY             Use KEY as the ChiliProject Repository API key
+
+Options
+-------
+
+  -o, --owner=OWNER         Owner of the created repositories. Default: current user
+  -g, --group=GROUP         Group of the created repositories. Default: current group
+  -m, --mode=MODE           The file mode the repository is created with.
+
+  Owner and Group can only be changed if this script runs as root. Consider
+  in your choices that depending on your setup, the Apache user (e.g. www-data)
+  has to read and write to the repositories while the ChiliProject user
+  (e.g. chiliproject) has to read it.
+
+  --scm=SCM                 The type of repository to create and register to
+                              ChiliProject. Default: Subversion
+                              reposman is able to create Git or Subversion
+                              repositories. You can use other types known to
+                              ChiliProject but have to specify the --command
+                              option to create these
+  -c, --command=COMMAND     Override the command used to create a repository.
+                              If used it will override the default command from
+                              the --scm option.
+  -u, --url=URL             The base URL ChiliProject will use to access the
+                              repositories. If this option is not set, reposman
+                              won't register the repositories.
+                              Examples:
+                                -u https://example.net/svn
+                                -u file:///var/lib/svn
+                                -u /var/lib/git
+  -f, --force               Force repository creation eben if the project
+                              repository is already configured in ChiliProject
+  -t, --test                Only show what should be done
+  -v, --verbose             Show more log information
+  -q, --quiet               Don't log anything
+
+  -V, --version             Print version and exit
+  --help                    Show this help and exit
+
+References
+----------
+
+You can find more information on the project's wiki at
+
+  https://www.chiliproject.org/projects/reposman/wiki
+</pre>
